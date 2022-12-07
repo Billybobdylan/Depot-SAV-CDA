@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Sous catégorie{% endblock %}
+
+{% block body %}
+
+<div class="card">
+      <div class="row">
+    
+         {% for sc in cat.souscat %}
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 ">
+                        <div class="bordure-grise px-3 pt-3 mb-3 shadow">
+                            <a href="/categorie/sous/{{ sc.id }}">
+                                <h4 class="text-center">
+                                {{ sc.nom }}
+                                </h4>
+                            </a>
+                        </div>
+                    </div>
+
+          
+                       
+                   
+                {% endfor %}
+        </div>
+    </div>
+      
+
+{% endblock %}

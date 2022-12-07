@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail{% endblock %}
+
+{% block body %}
+
+<div class="card">
+   
+    
+         {% for d in detail.detail %}
+        
+                        <div class="bordure-grise px-3 pt-3 mb-3 shadow">
+                            
+                                <h4 class="text-center">
+                                 <img class="imgd" src='/images/illu{{ d.id }}.jpg'/>
+                                {{ d.libelle }}
+                               </a>
+                                </h4> 
+                                {{ d.prix }}
+                                {{ d.description }}
+                                <a href="/add/{{ d.id }}" class="btn btn-success">Ajouter au panier</a>
+                            </a>
+                            
+                        </div>
+                    </div>
+
+          
+                       
+                   
+                {% endfor %}
+        </div>
+    </div>
+      
+
+{% endblock %}

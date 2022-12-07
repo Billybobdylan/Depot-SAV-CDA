@@ -1,0 +1,41 @@
+body {
+    background-image: url('/images/mur1.jpg');
+    background-size: cover;
+    min-height: 1000px;
+}
+
+.logo1 {
+    width: 200px;
+    height: 200px
+}
+
+.card {
+    width: 70%;
+    left: 15%;
+  background-color: #FBFBE5;
+  border-width: 4px;
+  border-color: #311F15;
+}
+
+.card-body {
+    background-color: #E7E7CC ;
+}
+
+.carousel-inner {
+   height: auto;
+   margin-top: 0%;
+}
+
+.nom1 {
+    height: 200px
+}
+
+.img1 {
+    width: 100px;
+    height: 100px;
+}
+
+.imgd {
+    width: 300px;
+    height: 300px;
+}

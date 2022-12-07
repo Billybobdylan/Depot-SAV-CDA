@@ -1,0 +1,57 @@
+  <img class="logo1"  src='/images/frlogo.png' href="/"/> <img class="nom1" src='/images/nom2.png'/>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+        <a class="nav-link" href="/">Accueil</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                   {% for cat in categories %}
+    
+        <li class="nav-item">
+          <a 
+            class="nav-link  "  
+            href="/categorie/{{cat.id}}"
+          >
+            {{ cat.nom }}
+          </a>
+        </li>
+
+      {% endfor %}
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+             <a href="/panier">panier {{ panier | length }}</a>
+<script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
+<lord-icon
+    src="https://cdn.lordicon.com/hyhnpiza.json"
+    trigger="morph"
+    style="width:40px;height:40px">
+</lord-icon>
+
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="none" viewBox="0 0 24 24">
+<style>
+  .user-1 {
+	animation: user-1 1s cubic-bezier(0.83, -0.07, 0, 1.04) both infinite alternate-reverse;
+}
+@keyframes user-1 {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    transform: translateY(-1px) translateX(-2px);
+  }
+}
+</style>
+  <circle class="user-1" cx="12" cy="8.245" r="2.5" stroke="#FE7902" stroke-width="1.5"/>
+  <ellipse cx="12" cy="15.926" stroke="#0A0A30" stroke-width="1.5" rx="5" ry="2.329"/>
+</svg>
+
+                <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Recherche">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
+            </form>
+        </div>
+    </nav>
