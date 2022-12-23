@@ -23,11 +23,11 @@ class Detail
     #[ORM\Column(length: 2000)]
     private ?string $description = null;
 
-    #[ORM\ManyToOne(inversedBy: 'detail')]
-    private ?Produit $produit = null;
-
     #[ORM\Column(length: 255)]
     private ?string $image = null;
+
+    #[ORM\ManyToOne(inversedBy: 'detail')]
+    private ?Produit $produit = null;
 
     public function getId(): ?int
     {
@@ -70,18 +70,6 @@ class Detail
         return $this;
     }
 
-    public function getProduit(): ?Produit
-    {
-        return $this->produit;
-    }
-
-    public function setProduit(?Produit $produit): self
-    {
-        $this->produit = $produit;
-
-        return $this;
-    }
-
     public function getImage(): ?string
     {
         return $this->image;
@@ -90,6 +78,18 @@ class Detail
     public function setImage(string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getProduit(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduit(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }

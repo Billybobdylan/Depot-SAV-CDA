@@ -22,14 +22,17 @@ class Produit
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: 2)]
     private ?string $prix = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $image = null;
+
     #[ORM\ManyToOne(inversedBy: 'produit')]
     private ?Souscat $souscat = null;
 
     #[ORM\OneToMany(mappedBy: 'produit', targetEntity: Detail::class)]
     private Collection $detail;
 
-    #[ORM\Column(length: 255)]
-    private ?string $image = null;
+    #[ORM\ManyToOne(inversedBy: 'produit')]
+    private ?Secompose $secompose = null;
 
     public function __construct()
     {
@@ -61,6 +64,18 @@ class Produit
     public function setPrix(string $prix): self
     {
         $this->prix = $prix;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
@@ -107,14 +122,14 @@ class Produit
         return $this;
     }
 
-    public function getImage(): ?string
+    public function getSecompose(): ?Secompose
     {
-        return $this->image;
+        return $this->secompose;
     }
 
-    public function setImage(string $image): self
+    public function setSecompose(?Secompose $secompose): self
     {
-        $this->image = $image;
+        $this->secompose = $secompose;
 
         return $this;
     }

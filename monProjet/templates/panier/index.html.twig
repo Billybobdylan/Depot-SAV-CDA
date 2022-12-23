@@ -1,28 +1,62 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanierController!{% endblock %}
+{% block title %}Panier{% endblock %}
 
 {% block body %}
 
 
 <div class="card">
    
-<h1>panier</h1>
+<h1>Panier</h1>
+  <table class="table">
+        <thead>
+            <tr>
+                <th>Produit</th>
+                <th>Prix</th>
+                <th>Quantité</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
 
 {% for pro in panier %}
-
-    <div>
-        {{ pro.libelle }}
-    </div>
-    <div>
-        {{ pro.prix }}
-    </div>
+        <tr>
+                    <td>{{ pro.libelle }}</td>
+                    <td class="text-end">{{ pro.prix }} €</td> 
+                    <td><input type="number" name="quantity" id="quantity" value="1" min="1"></td>
+                   
+                    
+                 
+                    <td>
+                        <a href="{{path("app_add", {id: pro.id})}}" class="btn btn-success">
+                            <i class="bi bi-cart-plus"></i>
+                        </a>
+                        <a href="{{path("app_remove", {id: pro.id})}}" class="btn btn-warning">
+                            <i class="bi bi-cart-dash"></i>
+                        </a>
+                        <a href="{{path("app_clear", {id: pro.id})}}" class="btn btn-danger">
+                            <i class="bi bi-cart-x"></i>
+                        </a>
+                    </td>
+                </tr>
     
 {% endfor %}
+      </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3">Total</td>
+               
+               
+            </tr>
+        </tfoot>
+    </table>
 
-<hr>
+        <a href="/valid" class="btn btn-success">
+        Valider la commande
+    </a>    
 
-<a href="/clear" class="btn btn-danger">Vider la panier</a> 
+<a href="/clear" class="btn btn-danger">Vider le panier</a> 
 </div>
 {% endblock %}
  
