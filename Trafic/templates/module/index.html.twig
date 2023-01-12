@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Catégorie{% endblock %}
+
+{% block body %}
+
+<div class="card">
+     
+     
+         {% for module in module %}
+         <div class=" px-3 pt-3 mb-3 text">
+                     <h4 class="text-center">
+                                {{ module.nom }}
+                                </h4>
+     <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 ">                   
+                            <img class="img1" src='/image/Cam{{ module.id }}.jpg'/>
+                               <h5> Type d'équipement: {{ module.type_module }} </h5>
+                               <h5> L'adresse IP: {{ module.adresseip }} </h5>
+                               <h5> Etat de l'équipement: {{ module.état }} </h5>
+                               
+                        </div>
+                    </div>
+                {% endfor %}
+        
+  </div>
+
+{% endblock %}

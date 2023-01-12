@@ -1,4 +1,4 @@
-  <img class="logo1"  src='/images/frlogo.png' href="/"/> <img class="nom1" src='/images/nom2.png'/>
+ 
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
 
@@ -9,27 +9,27 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                   {% for cat in categories %}
+                   {% for mod in module %}
     
         <li class="nav-item">
           <a 
             class="nav-link  "  
-            href="/categorie/{{cat.id}}"
+            href="/module/{{mod.id}}"
           >
-            {{ cat.nom }}
+            {{ mod.nom }}
           </a>
         </li>
 
       {% endfor %}
             </ul>
             <form class="form-inline my-2 my-lg-0">
-            <a href="/login">Connexion</a>
-            <a href="/user/add">Profil</a>
-             <a href="/panier">panier {{ panier | length }}</a>
+
 <script src="https://cdn.lordicon.com/fudrjiwc.js"></script>
 <lord-icon
-    src="https://cdn.lordicon.com/hyhnpiza.json"
-    trigger="morph"
+    src="https://cdn.lordicon.com/gqdnbnwt.json"
+    trigger="loop"
+    delay="2000"
+    colors="primary:#121331,secondary:#08a88a"
     style="width:40px;height:40px">
 </lord-icon>
 
@@ -52,8 +52,4 @@
   <ellipse cx="12" cy="15.926" stroke="#0A0A30" stroke-width="1.5" rx="5" ry="2.329"/>
 </svg>
 
-                <input class="form-control mr-sm-2" type="search" placeholder="Recherche" aria-label="Recherche">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Recherche</button>
-            </form>
-        </div>
     </nav>

@@ -2,23 +2,38 @@
 
 namespace App\Controller;
 
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
+use App\Entity\User;
+use App\Form\UserType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
-    #[Route('/user', name: 'app_user')]
-    public function index(AuthenticationUtils $authenticationUtils): Response
+    #[Route('/user/add', name: 'app_user')]
+    public function index(Request $request, EntityManagerInterface $manager): Response
     {
-        $error = $authenticationUtils->getLastAuthenticationError();
+        $user = new User();
+        
+      
+        $form = $this->createForm(UserType::class, $user);
+        
+        $form->handleRequest($request);
 
-        $lastUsername = $authenticationUtils->getLastUsername();
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $user->setRoles(["ROLE_USER"]);
+            // dd(user);
+            $manager->persist($user);
+            $manager->flush();
+            
+            return $this->redirect("/");
+        }
 
         return $this->render('user/index.html.twig', [
-             'last_username' => $lastUsername,
-             'error'         => $error,
+            'formulaire' => $form->createView(),
         ]);
     }
-}
+} 

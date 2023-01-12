@@ -1,0 +1,21 @@
+body {
+    background-color: #03041A;
+}
+
+.card { 
+    background-color: #15162C;
+}
+
+.text {
+    color: #f4f5f5;
+}
+
+.navbar {
+    background-color: #222339;
+}
+
+.img1 {
+    width: 200%;
+    height: 200%;
+    
+}
