@@ -3,12 +3,10 @@ body {
 }
 
 .card { 
-    background-color: #15162C;
+    background-color: #c3c5e4;
 }
 
-.text {
-    color: #f4f5f5;
-}
+
 
 .navbar {
     background-color: #222339;
@@ -17,5 +15,9 @@ body {
 .img1 {
     width: 200%;
     height: 200%;
-    
+    position:relative;
+}
+
+.table {
+    color: #f4f5f5;
 }

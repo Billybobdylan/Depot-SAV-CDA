@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Catégorie{% endblock %}
+{% block title %}Module{% endblock %}
 
 {% block body %}
 
@@ -9,19 +9,30 @@
      
          {% for module in module %}
          <div class=" px-3 pt-3 mb-3 text">
-                     <h4 class="text-center">
+         <a href="{{ path('app_crud_index') }}">Retour en arrière</a>
+                     <h3 class="text-center">
                                 {{ module.nom }}
-                                </h4>
+                                </h3>
      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 ">                   
                             <img class="img1" src='/image/Cam{{ module.id }}.jpg'/>
-                               <h5> Type d'équipement: {{ module.type_module }} </h5>
-                               <h5> L'adresse IP: {{ module.adresseip }} </h5>
-                               <h5> Etat de l'équipement: {{ module.état }} </h5>
+                            
+                               <h5 class="text-center"> Type d'équipement: {{ module.typemodule }} </h5>
+                               <h5 class="text-center"> L'adresse IP: {{ module.adresseip }} </h5> 
+                               {% if module.etat == 1 %}
+                               <h5 class="text-center"> Etat de l'équipement: OK </h5>
+                               {% else %}
+                               <h5 class="text-center"> Etat de l'équipement: Panne </h5>
+                               {% endif %}
+                               {% for mesure in mesure %}
+                                
+                                <h5 class="text-center"> Donnée: {{ mesure.nomvaleur }} </h5>
+                                <h5 class="text-center"> Valeur: {{ mesure.valeur }} </h5>
+                                {% endfor %}
                                
                         </div>
                     </div>
                 {% endfor %}
-        
+        {# <a href="{{ path('app_new') }}">New </a> #}
   </div>
 
 {% endblock %}

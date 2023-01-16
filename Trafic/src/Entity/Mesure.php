@@ -20,17 +20,20 @@ class Mesure
     #[ORM\Column]
     private ?int $valeur = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $date_mesure = null;
-
+   
     #[ORM\ManyToOne(inversedBy: 'mesures')]
     private ?module $module = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $nom_valeur2 = null;
 
     #[ORM\Column(nullable: true)]
     private ?int $valeur2 = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $date_mesure = null;
+
+
 
     public function getId(): ?int
     {
@@ -61,17 +64,6 @@ class Mesure
         return $this;
     }
 
-    public function getDateMesure(): ?\DateTimeInterface
-    {
-        return $this->date_mesure;
-    }
-
-    public function setDateMesure(\DateTimeInterface $date_mesure): self
-    {
-        $this->date_mesure = $date_mesure;
-
-        return $this;
-    }
 
     public function getModule(): ?module
     {
@@ -90,7 +82,7 @@ class Mesure
         return $this->nom_valeur2;
     }
 
-    public function setNomValeur2(string $nom_valeur2): self
+    public function setNomValeur2(?string $nom_valeur2): self
     {
         $this->nom_valeur2 = $nom_valeur2;
 
@@ -108,4 +100,18 @@ class Mesure
 
         return $this;
     }
+
+    public function getDateMesure(): ?string
+    {
+        return $this->date_mesure;
+    }
+
+    public function setDateMesure(string $date_mesure): self
+    {
+        $this->date_mesure = $date_mesure;
+
+        return $this;
+    }
+
+
 }

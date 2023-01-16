@@ -18,20 +18,22 @@ class Module
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $type_module = null;
+    
 
     #[ORM\Column(length: 255)]
     private ?string $adresseip = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $état = null;
 
     #[ORM\OneToMany(mappedBy: 'module', targetEntity: Mesure::class)]
     private Collection $mesures;
 
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
+
+    #[ORM\Column]
+    private ?bool $etat = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $typeModule = null;
 
 
     public function __construct()
@@ -56,17 +58,7 @@ class Module
         return $this;
     }
 
-    public function getType_module(): ?string
-    {
-        return $this->type_module;
-    }
-
-    public function setType_module(string $type_module): self
-    {
-        $this->type_module = $type_module;
-
-        return $this;
-    }
+    
 
     public function getAdresseip(): ?string
     {
@@ -76,18 +68,6 @@ class Module
     public function setAdresseip(string $adresseip): self
     {
         $this->adresseip = $adresseip;
-
-        return $this;
-    }
-
-    public function getétat(): ?string
-    {
-        return $this->état;
-    }
-
-    public function setétat(string $état): self
-    {
-        $this->état = $état;
 
         return $this;
     }
@@ -130,6 +110,30 @@ class Module
     public function setPhoto(string $photo): self
     {
         $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function isEtat(): ?bool
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(bool $etat): self
+    {
+        $this->etat = $etat;
+
+        return $this;
+    }
+
+    public function getTypeModule(): ?string
+    {
+        return $this->typeModule;
+    }
+
+    public function setTypeModule(string $typeModule): self
+    {
+        $this->typeModule = $typeModule;
 
         return $this;
     }

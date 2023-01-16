@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Module index{% endblock %}
+
+{% block body %}
+    <h1>Module index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Adresseip</th>
+                <th>Photo</th>
+                <th>Etat</th>
+                <th>TypeModule</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for module in modules %}
+            <tr>
+                <td>{{ module.id }}</td>
+                <td>{{ module.nom }}</td>
+                <td>{{ module.adresseip }}</td>
+                <td>{{ module.photo }}</td>
+                <td>{{ module.etat ? 'Yes' : 'No' }}</td>
+                <td>{{ module.typeModule }}</td>
+                <td>
+                    <a href="{{ path('app_module', {'id': module.id}) }}">show</a>
+                    <a href="{{ path('app_crud_edit', {'id': module.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_crud_new') }}">Create new</a>
+{% endblock %}
