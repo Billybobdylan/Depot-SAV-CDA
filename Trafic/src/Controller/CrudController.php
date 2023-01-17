@@ -3,12 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Module;
+use App\Form\ModuleType;
 use App\Form\Module1Type;
 use App\Repository\ModuleRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/crud')]
 class CrudController extends AbstractController
@@ -27,9 +28,12 @@ class CrudController extends AbstractController
         $module = new Module();
         $form = $this->createForm(Module1Type::class, $module);
         $form->handleRequest($request);
+   
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
             $moduleRepository->save($module, true);
+            
 
             return $this->redirectToRoute('app_crud_index', [], Response::HTTP_SEE_OTHER);
         }
@@ -75,4 +79,5 @@ class CrudController extends AbstractController
 
         return $this->redirectToRoute('app_crud_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }

@@ -17,6 +17,11 @@ class Module1Type extends AbstractType
             ->add('photo')
             ->add('etat')
             ->add('typeModule')
+            ->add('nomvaleur')
+            ->add('valeur')
+            ->add('nomvaleur2')
+            ->add('valeur2')
+            ->add('datemesure')
         ;
     }
 

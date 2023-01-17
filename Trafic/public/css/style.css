@@ -3,7 +3,7 @@ body {
 }
 
 .card { 
-    background-color: #c3c5e4;
+    background-color: #8a8c94;
 }
 
 
@@ -21,3 +21,30 @@ body {
 .table {
     color: #f4f5f5;
 }
+
+.container {
+    width: 87.5%;
+    margin: auto;
+  }
+  
+  .title {
+    margin: 4% 0 2.5% 0;
+  }
+  
+  h1 {
+    line-height: 0.25;
+    margin-bottom: 0px;
+  }
+  
+  .label {
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  
+  
+  select:hover, button:hover {
+    background-color: #3d3d3d;
+    color: #fff;
+    box-shadow: 0px 2px 3px rgba(0,0,0,0.2);
+  }

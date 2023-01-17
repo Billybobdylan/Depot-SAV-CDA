@@ -3,6 +3,7 @@
 {% block title %}Module index{% endblock %}
 
 {% block body %}
+<div class="card">
     <h1>Module index</h1>
 
     <table class="table">
@@ -27,7 +28,7 @@
                 <td>{{ module.etat ? 'Yes' : 'No' }}</td>
                 <td>{{ module.typeModule }}</td>
                 <td>
-                    <a href="{{ path('app_module', {'id': module.id}) }}">show</a>
+                    <a href="{{ path('app_crud_show', {'id': module.id}) }}">show</a>
                     <a href="{{ path('app_crud_edit', {'id': module.id}) }}">edit</a>
                 </td>
             </tr>
@@ -40,4 +41,5 @@
     </table>
 
     <a href="{{ path('app_crud_new') }}">Create new</a>
+</div>
 {% endblock %}
