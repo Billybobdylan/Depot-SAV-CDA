@@ -15,31 +15,36 @@
                 <th>Photo</th>
                 <th>Etat</th>
                 <th>TypeModule</th>
-                <th>actions</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
+        {# Boucle permettant de retrouver les données dans la base de données #}
         {% for module in modules %}
+        {% for mesure in mesures %}
             <tr>
                 <td>{{ module.id }}</td>
                 <td>{{ module.nom }}</td>
                 <td>{{ module.adresseip }}</td>
                 <td>{{ module.photo }}</td>
-                <td>{{ module.etat ? 'Yes' : 'No' }}</td>
+                <td>{{ mesure.etat ? 'Fonctionnel' : 'Panne' }}</td>
                 <td>{{ module.typeModule }}</td>
                 <td>
-                    <a href="{{ path('app_crud_show', {'id': module.id}) }}">show</a>
-                    <a href="{{ path('app_crud_edit', {'id': module.id}) }}">edit</a>
+                    <a href="{{ path('app_crud_show', {'id': module.id}) }}">Détail</a>
+                    <a href="{{ path('app_crud_edit', {'id': module.id}) }}">Edit</a>
                 </td>
             </tr>
+            {# Si jamais la boucle ne trouve rien dans la base de données #}
         {% else %}
             <tr>
-                <td colspan="7">no records found</td>
+                <td colspan="7">Pas de données disponible</td>
             </tr>
+        {% endfor %}
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_crud_new') }}">Create new</a>
+    {# Bouton qui permet de crée un nouveau module #}
+    <a href="{{ path('app_crud_new') }}">Crée nouveau module</a>
 </div>
 {% endblock %}
+

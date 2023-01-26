@@ -4,51 +4,56 @@
 
 {% block body %}
 <div class="card">
-         
+         {# Regroupe toutes les informations sur le module #}
          <div class=" px-3 pt-3 mb-3 text">
          
                      <h3 class="text-center">{{ module.nom }}</h3>
      <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2 ">                   
-                            <img class="img1" src='/image/Cam{{ module.id }}.jpg'/>
+                            <img class="img1" src='/image/{{ module.photo }}'/>
                             
                                <h5 class="text-center"> Type d'équipement: {{ module.typemodule }} </h5>
                                <h5 class="text-center"> L'adresse IP: {{ module.adresseip }} </h5> 
-                               {% if module.etat == 1 %}
-                               <h5 class="text-center"> Etat de l'équipement: OK </h5>
+                              {# Boucle permettant de voir l'état du module  #}
+                               {% if mesure.etat == 1 %}
+                               <div class="alert alert-success" role="alert">
+                                    L'équipement fontionne correctement
+                                </div>
                                {% else %}
                                <div class="alert alert-danger" role="alert">
-                                Attention une panne est détécter sur ce module 
+                                Attention une panne est détécter sur cet équipement 
                                 </div>
-                               <h5 class="text-center"> Etat de l'équipement: Panne </h5>
                                {% endif %}
-                               {% if module.valeur >= 0 %}
-                                <h5 class="text-center"> Donnée: {{ module.nomvaleur }} </h5>
+                               {# Boucle permettant de vérifier si il y a bien des données #}
+                               {% if mesure.valeur >= 0 %}
+                                <h5 class="text-center"> Donnée: {{ mesure.nom }} </h5>
                                {% else %}
-                               <h5>rien</h5>
+                               <h5>Aucune données</h5>
                                {% endif %}
-                            
-                                
+                           
+                                                    
                         </div>
+                        {# Graphique #}
                         <div class="container">
-  
+                            {# Bouton permettant de changer de style de graphique #}
                             <div class="controls">
-                                <h5 class="label">Chart Type</h5>
+                                <h5 class="label">Type de graphique</h5>
                             <select name="chartType" id="chartType" onchange="updateChartType()">
                                 <option value="line">Line</option>
-                                <option value="bar">Bar</option>
-                                <option value="radar">Radar</option>
+                                <option value="bar">Bar</option>                             
                                 <option value="polarArea">Polar Area</option>
                             </select>
+                            {# Bouton permettant de changer les stats  #}
                         <button type="button" class="btn btn-dark" onclick="randomizeData()">Voir stat du jour précédent</button>
                         </div>
                     <div class="chart-container" style="position: relative; width:85vw">
                             <canvas id="myChart"></canvas>
                          </div>    
                         </div>
+                        {# Le graphique en soit #}
                         {% block javasripts %}
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
                         <script>
-                                
+                              
                                 let moreData = [0, 5, 10, 20, 40, 50, 70, 80, 90, 100, 120, 160, 180, 200, 240, 260, 300];
                                     myData = {
                                         labels: ["00:00", "03:00", "06:00", "10:00", "15:00", "18:00", "22:00"],
@@ -69,7 +74,6 @@
                     data: myData
                 });
 
-
                         function updateChartType() {
 
                             myChart.destroy();
@@ -79,7 +83,7 @@
                             });
                         };
 
-
+                {# Fais des stats aléatoires  #}
                 function randomizeData() {
                     let newMoreData = moreData.map(x => Math.floor(Math.random() * 300));
                     myData.datasets[0].data = newMoreData

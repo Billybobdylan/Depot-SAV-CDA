@@ -18,6 +18,11 @@ body {
     position:relative;
 }
 
+.img2 {
+  width: 15%;
+  height: 15%;
+}
+
 .table {
     color: #f4f5f5;
 }

@@ -18,37 +18,24 @@ class Module
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
-    
-
     #[ORM\Column(length: 255)]
     private ?string $adresseip = null;
-
 
     #[ORM\Column(length: 255)]
     private ?string $photo = null;
 
-    #[ORM\Column]
-    private ?bool $etat = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $typeModule = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $nomvaleur = null;
-
-    #[ORM\Column]
-    private ?int $valeur = null;
-
-    #[ORM\Column(length: 255, nullable: true)]
-    private ?string $nomvaleur2 = null;
-
-    #[ORM\Column(nullable: true)]
-    private ?int $valeur2 = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $datemesure = null;
+    private ?string $typemodule = null;
 
 
+    #[ORM\OneToMany(mappedBy: 'module', targetEntity: Mesure::class)]
+    private Collection $mesures;
+
+    public function __construct()
+    {
+        $this->mesures = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -67,8 +54,6 @@ class Module
         return $this;
     }
 
-    
-
     public function getAdresseip(): ?string
     {
         return $this->adresseip;
@@ -80,8 +65,6 @@ class Module
 
         return $this;
     }
-
-
 
     public function getPhoto(): ?string
     {
@@ -95,89 +78,46 @@ class Module
         return $this;
     }
 
-    public function isEtat(): ?bool
+
+    public function getTypemodule(): ?string
     {
-        return $this->etat;
+        return $this->typemodule;
     }
 
-    public function setEtat(bool $etat): self
+    public function setTypemodule(string $typemodule): self
     {
-        $this->etat = $etat;
+        $this->typemodule = $typemodule;
 
         return $this;
     }
 
-    public function getTypeModule(): ?string
+    /**
+     * @return Collection<int, Mesure>
+     */
+    public function getMesures(): Collection
     {
-        return $this->typeModule;
+        return $this->mesures;
     }
 
-    public function setTypeModule(string $typeModule): self
+    public function addMesure(Mesure $mesure): self
     {
-        $this->typeModule = $typeModule;
+        if (!$this->mesures->contains($mesure)) {
+            $this->mesures->add($mesure);
+            $mesure->setModule($this);
+        }
 
         return $this;
     }
 
-
-    public function getNomvaleur(): ?string
+    public function removeMesure(Mesure $mesure): self
     {
-        return $this->nomvaleur;
-    }
-
-    public function setNomvaleur(string $nomvaleur): self
-    {
-        $this->nomvaleur = $nomvaleur;
+        if ($this->mesures->removeElement($mesure)) {
+            // set the owning side to null (unless already changed)
+            if ($mesure->getModule() === $this) {
+                $mesure->setModule(null);
+            }
+        }
 
         return $this;
     }
-
-    public function getValeur(): ?int
-    {
-        return $this->valeur;
-    }
-
-    public function setValeur(int $valeur): self
-    {
-        $this->valeur = $valeur;
-
-        return $this;
-    }
-
-    public function getNomvaleur2(): ?string
-    {
-        return $this->nomvaleur2;
-    }
-
-    public function setNomvaleur2(?string $nomvaleur2): self
-    {
-        $this->nomvaleur2 = $nomvaleur2;
-
-        return $this;
-    }
-
-    public function getValeur2(): ?int
-    {
-        return $this->valeur2;
-    }
-
-    public function setValeur2(?int $valeur2): self
-    {
-        $this->valeur2 = $valeur2;
-
-        return $this;
-    }
-
-    public function getDatemesure(): ?string
-    {
-        return $this->datemesure;
-    }
-
-    public function setDatemesure(string $datemesure): self
-    {
-        $this->datemesure = $datemesure;
-
-        return $this;
-    }
-
 }
