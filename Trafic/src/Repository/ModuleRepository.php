@@ -39,20 +39,21 @@ class ModuleRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Module[] Returns an array of Module objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('m')
-//            ->andWhere('m.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('m.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Module[] Returns an array of Module objects
+    */
+   public function findAllModules(): array
+   {
+       return $this->createQueryBuilder('m')
+            ->select("m.id as id, m.nom, mes.id as mes_id, mes.etat")
+           ->join("m.mesures", "mes")
+           ->where("mes.date=(select max(date) from mesure m2 where m2.module_id=module.id)") 
+           ->groupBy('m.id')
+           ->orderBy('m.id', 'ASC')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
 
 //    public function findOneBySomeField($value): ?Module
 //    {

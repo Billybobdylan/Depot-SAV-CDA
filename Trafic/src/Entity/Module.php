@@ -29,6 +29,10 @@ class Module
     private ?string $typemodule = null;
 
 
+    #[ORM\Column]
+    private ?bool $etat = null;
+
+
     #[ORM\OneToMany(mappedBy: 'module', targetEntity: Mesure::class)]
     private Collection $mesures;
 
@@ -87,6 +91,19 @@ class Module
     public function setTypemodule(string $typemodule): self
     {
         $this->typemodule = $typemodule;
+
+        return $this;
+    }
+
+
+    public function isEtat(): ?bool
+    {
+        return $this->etat;
+    }
+
+    public function setEtat(bool $etat): self
+    {
+        $this->etat = $etat;
 
         return $this;
     }

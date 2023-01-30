@@ -18,4 +18,17 @@ class AccueilController extends AbstractController
             'controller_name' => 'AccueilController',
         ]);
     }
+
+
+    #[Route('/test', name: 'app_test')]
+    public function test(ModuleRepository $repo): Response
+    {
+        $mod = $repo->findAllModules();
+
+        dd($mod);
+        return $this->render('accueil/index.html.twig', [
+            'module' => $module,
+            'controller_name' => 'AccueilController',
+        ]);
+    }
 }

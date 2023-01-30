@@ -40,13 +40,11 @@
                             <select name="chartType" id="chartType" onchange="updateChartType()">
                                 <option value="line">Line</option>
                                 <option value="bar">Bar</option>                             
-                                <option value="polarArea">Polar Area</option>
                             </select>
-                            {# Bouton permettant de changer les stats  #}
-                        <button type="button" class="btn btn-dark" onclick="randomizeData()">Voir stat du jour précédent</button>
+                            
                         </div>
                     <div class="chart-container" style="position: relative; width:85vw">
-                            <canvas id="myChart"></canvas>
+                            <canvas id="myChart" width="200" height="100"></canvas>
                          </div>    
                         </div>
                         {# Le graphique en soit #}
@@ -54,18 +52,15 @@
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
                         <script>
 
-                            var data = mesure.valeur;
-                                var chartData = formatDataForChart(data);
-                                let moreData = [0, 5, 50, 20, 40, 50, 70, 80, 90, 100, 120, 160, 180];
                                     myData = {
-                                        labels: ["00:00", "03:00", "06:00", "10:00", "15:00", "18:00", "22:00"],
+                                        labels: {{ mesDate|raw }},
                                         datasets: [
                                     {
                                         label: "Donnée durant la journée",
                                         fill: true,
-                                        backgroundColor: 'rgba(255, 99, 132, 0.50)',
-                                        borderColor: 'rgb(255, 99, 132)',
-                                        data: moreData,
+                                        backgroundColor: 'rgba(19, 164, 236, 0.86)',
+                                        borderColor: 'rgb(19, 206, 211))',
+                                        data: {{ mesValeur|raw }},
                                     }]
                                  };
 
@@ -73,7 +68,7 @@
                     var ctx = document.getElementById('myChart').getContext('2d');
                     var myChart = new Chart(ctx, {
                     type: 'line',
-                    data: chartData
+                    data: myData
                 });
                         {# Permet de changer de type de graphique #}
                         function updateChartType() {
@@ -85,13 +80,6 @@
                             });
                         };
 
-                {# Fais des stats aléatoires  #}
-                function randomizeData() {
-                    let newMoreData = moreData.map(x => Math.floor(Math.random() * 300));
-                    myData.datasets[0].data = newMoreData
-                    myChart.update();
-                    console.log(newDataBaby);
-                    };
 </script>
 
            
@@ -101,9 +89,9 @@
               
         {# <a href="{{ path('app_new') }}">New </a> #}
   
-    <a href="{{ path('app_crud_index') }}">Retour en arrière</a>
+    <a class="btn btn-info" href="{{ path('app_crud_index') }}">Retour en arrière</a>
 
-    <a href="{{ path('app_crud_edit', {'id': module.id}) }}">Modifier</a>
+    <a class="btn btn-success" href="{{ path('app_crud_edit', {'id': module.id}) }}">Modifier</a>
 
     {{ include('crud/_delete_form.html.twig') }}
     </div>

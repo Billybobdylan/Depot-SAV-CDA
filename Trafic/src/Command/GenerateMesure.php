@@ -33,23 +33,27 @@ class GenerateMesure extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        echo "generate mesure ...\n";
-
+        
         $faker = Factory::create();
-
-        $mod1 = $this->repo_module->find(1);
-
-        $mes1 = new Mesure();
-        $mes1->setEtat(true);
-        $mes1->setNom("temperature");
-        $mes1->setValeur($faker->numberBetween(-10, 40));
-        $mes1->setDate(new DateTime());
-        $mes1->setModule($mod1);
-
-
-        $this->em->persist($mes1);
-
-        $this->em->flush();
+        
+        $modules = $this->repo_module->findAll();
+        
+        foreach ($modules as $m) {
+            
+            echo "generate mesure fot " . $m->getNom() . "\n";
+            $mes1 = new Mesure();
+            $mes1->setEtat(rand(0,1) == 1);
+            $mes1->setNom("random value");
+            $mes1->setValeur($faker->numberBetween(-10, 40));
+            $mes1->setDate(new DateTime());
+            $mes1->setModule($m);
+            
+            $m->setEtat($mes1->isEtat());
+            
+            $this->em->persist($mes1);
+            
+            $this->em->flush();
+        }
 
         return Command::SUCCESS;
 

@@ -21,6 +21,7 @@ class CrudController extends AbstractController
     #[Route('/', name: 'app_crud_index', methods: ['GET'])]
     public function index(ModuleRepository $moduleRepository, MesureRepository $mesureRepository, EntityManagerInterface $em): Response
     {
+        
         $modules = $moduleRepository->findAll();
         $mesures = $mesureRepository->findAll();
          foreach($mesures as $mesure){
@@ -34,6 +35,8 @@ class CrudController extends AbstractController
             'mesures' => $mesureRepository->findAll(),
         ]);
     }
+
+
     // Création de nouveau module
     #[Route('/new', name: 'app_crud_new', methods: ['GET', 'POST'])]
     public function new(Request $request, ModuleRepository $moduleRepository): Response
@@ -45,6 +48,8 @@ class CrudController extends AbstractController
         
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $module->setEtat(true);
             $moduleRepository->save($module, true);
             
 
@@ -56,15 +61,33 @@ class CrudController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
     // Affiche les module par id
     #[Route('/{id}', name: 'app_crud_show', methods: ['GET'])]
-    public function show(Module $module, Mesure $mesure): Response
+    public function show(int $id, Module $module, Mesure $mesure, MesureRepository $mesRepo, Module $modRepo): Response
     {
+        
+
+        $mes = $mesRepo->findBy(['module'=> $id]);
+
+        $mesValeur = [];
+        $mesDate = [];
+
+        foreach($mes as $mesure){
+            $mesValeur[] = $mesure->getValeur();
+            $mesDate[] = $mesure->getDate();
+        }
+
         return $this->render('crud/show.html.twig', [
+            'mesValeur' => json_encode($mesValeur),
+            'mesDate' => json_encode($mesDate),
             'module' => $module,
             'mesure' => $mesure,
         ]);
     }
+
+
     // Permet la modification d'un module selon l'id
     #[Route('/{id}/edit', name: 'app_crud_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Module $module, ModuleRepository $moduleRepository): Response
@@ -83,6 +106,8 @@ class CrudController extends AbstractController
             'form' => $form,
         ]);
     }
+
+
     // Permet de supprimé un module
     #[Route('/{id}', name: 'app_crud_delete', methods: ['POST'])]
     public function delete(Request $request, Module $module, ModuleRepository $moduleRepository): Response

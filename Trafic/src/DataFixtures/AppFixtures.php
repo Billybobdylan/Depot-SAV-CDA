@@ -20,6 +20,7 @@ class AppFixtures extends Fixture
         $mod1->setNom("Module température");
         $mod1->setTypemodule("Thermomètre exterieur");
         $mod1->setAdresseip("1111111");
+        $mod1->setEtat(true);
         $mod1->setphoto("Cam1.jpg");
         
         $mes1 = new Mesure();
