@@ -76,9 +76,10 @@ class CrudController extends AbstractController
 
         foreach($mes as $mesure){
             $mesValeur[] = $mesure->getValeur();
-            $mesDate[] = $mesure->getDate();
+            $mesDate[] = $mesure->getDate()->format('H:i:s');
+            
         }
-
+         
         return $this->render('crud/show.html.twig', [
             'mesValeur' => json_encode($mesValeur),
             'mesDate' => json_encode($mesDate),

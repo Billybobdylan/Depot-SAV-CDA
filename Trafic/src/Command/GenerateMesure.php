@@ -44,7 +44,7 @@ class GenerateMesure extends Command
             $mes1 = new Mesure();
             $mes1->setEtat(rand(0,1) == 1);
             $mes1->setNom("random value");
-            $mes1->setValeur($faker->numberBetween(-10, 40));
+            $mes1->setValeur($faker->numberBetween(1, 100));
             $mes1->setDate(new DateTime());
             $mes1->setModule($m);
             

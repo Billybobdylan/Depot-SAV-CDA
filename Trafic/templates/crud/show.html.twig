@@ -15,6 +15,7 @@
                                <h5 class="text-center"> L'adresse IP: {{ module.adresseip }} </h5> 
                               {# Boucle permettant de voir l'état du module  #}
                                {% if mesure.etat == 1 %}
+                               
                                <div class="alert alert-success" role="alert">
                                     L'équipement fontionne correctement
                                 </div>
@@ -23,12 +24,7 @@
                                 Attention une panne est détécter sur cet équipement 
                                 </div>
                                {% endif %}
-                               {# Boucle permettant de vérifier si il y a bien des données #}
-                               {% if mesure.valeur >= 0 %}
-                                <h5 class="text-center"> Donnée: {{ mesure.nom }} </h5>
-                               {% else %}
-                               <h5>Aucune données</h5>
-                               {% endif %}
+                               
                            
                                                     
                         </div>
@@ -49,6 +45,13 @@
                         </div>
                         {# Le graphique en soit #}
                         {% block javasripts %}
+
+                         {% if mesure.etat == 0 %}
+                               
+                               <script>
+                                    alert("Une panne à été détectée");
+                                </script>
+                               {% endif %}
                         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha512-s+xg36jbIujB2S2VKfpGmlC3T5V2TF3lY48DX7u2r9XzGzgPsa6wTpOQA7J9iffvdeBN0q9tKzRxVxw1JviZPg==" crossorigin="anonymous"></script>
                         <script>
 
