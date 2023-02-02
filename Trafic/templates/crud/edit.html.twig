@@ -8,9 +8,7 @@
     {# Formulaire de mise à jour du module #}
     {{ include('crud/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_crud_index') }}">Retour à la liste</a>
-    {# Bouton pour supprimer le module #}
-    {{ include('crud/_delete_form.html.twig') }}
+    <a class="btn btn-info" href="{{ path('app_crud_index') }}">Retour à la liste</a> 
 
     </div>
 {% endblock %}

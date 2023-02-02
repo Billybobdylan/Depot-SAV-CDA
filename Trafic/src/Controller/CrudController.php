@@ -76,7 +76,7 @@ class CrudController extends AbstractController
 
         foreach($mes as $mesure){
             $mesValeur[] = $mesure->getValeur();
-            $mesDate[] = $mesure->getDate()->format('H:i:s');
+            $mesDate[] = $mesure->getDate()->format('d/m H:i:s');
             
         }
          

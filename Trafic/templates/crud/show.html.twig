@@ -23,8 +23,7 @@
                                <div class="alert alert-danger" role="alert">
                                 Attention une panne est détécter sur cet équipement 
                                 </div>
-                               {% endif %}
-                               
+                               {% endif %}                
                            
                                                     
                         </div>
@@ -82,11 +81,7 @@
                                 data: myData,
                             });
                         };
-
-</script>
-
-           
-
+                    </script>
                         {% endblock %}
                     </div>
               
@@ -95,8 +90,8 @@
     <a class="btn btn-info" href="{{ path('app_crud_index') }}">Retour en arrière</a>
 
     <a class="btn btn-success" href="{{ path('app_crud_edit', {'id': module.id}) }}">Modifier</a>
-
-    {{ include('crud/_delete_form.html.twig') }}
+    
+   
     </div>
 
 </div>

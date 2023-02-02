@@ -12,7 +12,7 @@
                 <th>Nom</th>
                 <th>Adresseip</th>
                 <th>Photo</th>
-                <th>Etat</th>
+                {# <th>Etat</th> #}
                 <th>TypeModule</th>
                 <th>Actions</th>
             </tr>
@@ -25,7 +25,7 @@
                     <td>{{ module.nom }}</td>
                     <td>{{ module.adresseip }}</td>
                     <td>{{ module.photo }}</td>
-                    <td>{{ module.etat ? 'Fonctionnel' : 'Panne' }}</td>
+                    {# <td>{{ module.etat ? 'Fonctionnel' : 'Panne' }}</td> #}
                     <td>{{ module.typeModule }}</td>
                     <td>
                         <a class="btn btn-info" href="{{ path('app_crud_show', {'id': module.id}) }}">Détail</a>
@@ -43,6 +43,7 @@
     </table>
     {# Bouton qui permet de crée un nouveau module #}
     <a class="btn btn-primary" href="{{ path('app_crud_new') }}">Crée nouveau module</a>
+    <a class="btn btn-info" href="/">Retour a l'acceuil</a>
 </div>
 {% endblock %}
 
