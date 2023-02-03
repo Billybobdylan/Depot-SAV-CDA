@@ -13,8 +13,10 @@ class AccueilController extends AbstractController
     public function index(ModuleRepository $repo): Response
     {
         $module = $repo->findAll();
+        $contmod = count($module);
         return $this->render('accueil/index.html.twig', [
             'module' => $module,
+            'contmod' => $contmod,
             'controller_name' => 'AccueilController',
         ]);
     }
